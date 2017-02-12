@@ -9,17 +9,31 @@
 </head>
 <body>
 	<p>
-		Paste text below to encode it with a Caesar Cipher!
+		Mastermind Instructions: There is a secret code made of 4 colors.       
+		Guess the correct colors in their correct positions and win the game! 
+		To guess, type the colors in order of position.                        
+		Example: if you want to guess Green, Blue, Yellow, and Red, type      
+		'Green Blue Yellow Red' in that order with only spaces to separate.   
+		There are 6 colors to choose from and each can be used multiple times.
+
+		The colors to choose from are red, blue, yellow, green, purple and orange.
 	</p>
 
 	<form>
-		<input type = 'text' width = "100" name = "message"/>
-		<input type='submit' value='Encode!' />
+		<input type = 'text' width = "100" name = "guess"/>
+		<input type='submit' value='Guess!' />
 	</form>
 	<p>
-		Here is your translation:
-
-		<%= translation%>
+		You have <%=guesses_left%> guesses left
+	</p>
+	<p>
+		<%= game_board%>
+	</p>
+	<p>
+		<%=game_hints%>
+	</p>
+	<p>
+		<%=game_over_message%>
 	</p>
 </body>
 </html>
