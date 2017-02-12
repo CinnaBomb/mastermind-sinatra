@@ -1,0 +1,25 @@
+<html>
+<head>
+	<style>
+		body
+		{
+			<%=background%>
+		}
+	</style>
+</head>
+<body>
+	<p>
+		Paste text below to encode it with a Caesar Cipher!
+	</p>
+
+	<form>
+		<input type = 'text' width = "100" name = "message"/>
+		<input type='submit' value='Encode!' />
+	</form>
+	<p>
+		Here is your translation:
+
+		<%= translation%>
+	</p>
+</body>
+</html>
