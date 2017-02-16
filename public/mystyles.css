@@ -1,0 +1,12 @@
+body{
+	background: black;
+	color: white;
+	text-align: center;
+}
+
+#instructions{
+	margin: auto;
+	width: 400px;
+	border: 2px solid white;
+	border-radius: 5px;
+}
