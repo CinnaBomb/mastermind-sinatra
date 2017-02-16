@@ -1,14 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<style>
-		body
-		{
-			<%=background%>
-		}
-	</style>
+<link rel="stylesheet" type="text/css" href="mystyles.css"/>
 </head>
 <body>
-	<p>
+	<div id = "instructions">
 		Mastermind Instructions: There is a secret code made of 4 colors.       
 		Guess the correct colors in their correct positions and win the game! 
 		To guess, type the colors in order of position.                        
@@ -16,24 +12,23 @@
 		'Green Blue Yellow Red' in that order with only spaces to separate.   
 		There are 6 colors to choose from and each can be used multiple times.
 
+	</div>
+	<div>
 		The colors to choose from are red, blue, yellow, green, purple and orange.
-	</p>
+		<br>
+	You have <%= guesses_left%> guesses left.
+	</div>
 
 	<form>
 		<input type = 'text' width = "100" name = "guess"/>
 		<input type='submit' value='Guess!' />
 	</form>
-	<p>
-		You have <%=guesses_left%> guesses left
-	</p>
-	<p>
+	<div>
 		<%= game_board%>
-	</p>
-	<p>
-		<%=game_hints%>
-	</p>
-	<p>
-		<%=game_over_message%>
-	</p>
+		<%= error_message%>
+		<%= game_hints%>
+		<%= message%>
+	</div>
+
 </body>
 </html>
