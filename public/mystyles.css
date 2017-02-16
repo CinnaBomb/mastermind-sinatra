@@ -10,3 +10,7 @@ body{
 	border: 2px solid white;
 	border-radius: 5px;
 }
+#play_again{
+	position: fixed;
+	bottom: 0;
+}

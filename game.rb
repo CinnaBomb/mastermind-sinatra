@@ -29,6 +29,13 @@
 
  end
 
+ get "/play_again_method" do
+ 	 p = PlayerGame.new
+ 	 redirect '/'
+ end
+
+
+
  # p = PlayerGame.new
  # p.valid_guess("blue".downcase.chomp.split(" "))
  # puts p.error_message
