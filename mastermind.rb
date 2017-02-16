@@ -1,67 +1,77 @@
 class PlayerGame
-	attr_accessor :guess_count, :max_guess_count
+	attr_accessor :guess_count, :max_guess_count, :error_message, :code
 
 	def initialize
 		@colors = ["red", "blue", "yellow", "green", "purple", "orange"]
 		@guess_count = 0
-		@max_guess_count = 12
+		@max_guess_count = 2
 		@code = new_code
 		@board = ""
 		@game_won = true
+		@error_message = ""
 	end
 
 	def new_code
 		code = []
 		4.times {code << @colors.sample}
-		#@code = ["orange", "red", "green", "red"]
-		#puts @code.inspect
 		code
 	end
 
 	def game_board (guess)
-		until @max_guess_count-@guess_count == 0
-			@board += guess.inspect
+		if @max_guess_count-@guess_count != 0
+			line = ""
+			guess.each do |color|
+				line += "<span style = 'color: #{color}'> ⚫ </span>"
+			#@board << guess
+			end
+			line += "</br>"
+			@board += line
 		end
 		@board
 
 	end
 
-	def game_over_message
-		if game_over? == true
+	def game_over_message(guess)
+		if game_over?(guess) == true
 			if @game_won == true
-				game_over_message = "You won!"
+				message = "You won!"
 			else
-				game_over_message = "You lost!"
+				message = "You lost!"
 			end
 		end
-		game_over_message
+		message
 
 	end
 
 	def valid_guess(guess)
+		if game_over?(guess) == true
+			@error_message = "You've already lost!"
+			return false
+		end
 		
 		if guess.length == 4 && guess.all?{|color| @colors.include?(color)}
 			@guess_count +=1
+			@error_message = ""
 			return true
 		end
-		#puts "Be sure to spell color names correctly and guess all 4 spaces"
+		@error_message = "Be sure to spell color names correctly and guess all 4 spaces"
 		false
 	end
 
 	def check_guess(guess)
-		if @guess == @code
+		if guess == @code
 			hints = "Wow you are smart!"
-		elsif @guess.any?{|color| @code.include?(color)}
-			hints = code_hints
+		elsif guess.any?{|color| @code.include?(color)}
+			hints = code_hints(guess)
 		else
 			hints = "None of your guesses were the right colors"
 		end
 		hints
 	end
 
-	def code_hints
+	def code_hints(guess)
 		temp_code = [].replace(@code)
-		temp_guess = [].replace(@guess)
+		temp_guess = [].replace(guess)
 		correct_color_and_position = 0
 		correct_color_wrong_position = 0
 		#CHECK FOR CORRECT COLORS IN CORRECT POSITIONS
@@ -94,17 +104,6 @@ class PlayerGame
 			false
 		end
 	end
-
-	# def play
-	# 	how_to_play
-	# 	new_code
-	# 	until game_over?
-	# 		player_guess
-	# 	end
-	# 	#puts "|Game Over!          |"
-	# 	#puts "_____________________"
-	# end
-
 
 end
 
